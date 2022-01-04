@@ -1,0 +1,36 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "user": "diego123",
+        "password": "123456",
+        "notes": [
+          {
+            "id": 2,
+            "creator": "Diego",
+            "text": "Felices vacaciones",
+            "date": "2021-12-30T23:58:40.362Z"
+          },
+          {
+            "id": 2,
+            "creator": "asdasd",
+            "text": "asdasdasd",
+            "date": "2021-12-31T00:04:55.638Z"
+          },
+          {
+            "id": 3,
+            "creator": "asdasdasd",
+            "text": "asdasdasdasd",
+            "date": "2021-12-31T00:05:16.324Z"
+          }
+        ]
+      },
+      
+      {
+        "id": 2,
+        "user": "roman123",
+        "password": "654321",
+        "notes": []
+      }
+    ]
+  }
