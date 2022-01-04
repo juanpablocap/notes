@@ -5,20 +5,23 @@ const passInput = document.getElementById('pass');
 
 // form valid no-valid check
 
-const checkInput = (expression, element, inputValue) => {
-    let isOk = false;
-    if(expression.test(inputValue)) {
-        isOk = true;
-        if(element.classList.contains('is-invalid')){
-            element.classList.remove('is-invalid');
-        }
+const checkInput = (expression, element, inputValue)=>{
+    let isOk = false
+    if(expression.test(inputValue)){
+      isOk=true;
+      if(element.classList.contains('is-invalid')){
+        element.classList.remove('is-invalid');
+      }
+      element.classList.add('is-valid')
     }else{
-        if(element.classList.contains('is-valid')){
-            element.classList.remove('is-valid');
-        }
+      if(element.classList.contains('is-valid')){
+        element.classList.remove('is-valid');
+      }
+      element.classList.add('is-invalid');
     }
     return isOk
-}
+  }
+  
 
 // character user and password check regular expressions
 
@@ -34,26 +37,28 @@ const verification = (user, password) =>{
     return {userCorrect, passwordCorrect} // object desc
 }
 
-const login =  async (event) =>{
+const login = async (event) =>{
     event.preventDefault();
-
-    const {userCorrect, passwordCorrect} = verification(userInput.value, passInput.value);
-    if(userCorrect === true && passwordCorrect === true){
-        const response = await fetch('http://localhost:3000/users');
-        const data = await response.json();
-        let user = data.find(item=> item.user === userInput.value);
-        if (user?.password === passInput.value){
-            localStorage.setItem('notes', JSON.stringify(user.notes));
-            localStorage.setItem('user', JSON.stringify(user));
-            window.location.assign(window.location.origin + '/main.html');
-        }else{
-            document.getElementById('msg').style.display='block'
-            setTimeout(()=>{
-                document.getElementById('msg').style.display='none'
-            }, 4000)
-        }
+  
+    //! VALIDARLOS
+    const {userCorrect, passwordCorrect} = verification(userInput.value,passInput.value);
+    //! COMPARAMOS QUE LOS DATOS COINCIDAN CON LOS GUARDADOS
+    if(userCorrect===true && passwordCorrect===true){
+      const response = await fetch('http://localhost:3001/users/');
+      const data = await response.json();
+      let user = data.find(item=>item.user === userInput.value);
+      if(user?.password === passInput.value){
+        localStorage.setItem('notes',JSON.stringify(user.notes));
+        localStorage.setItem('user',JSON.stringify(user));
+        window.location.assign(window.location.origin + '/main.html');
+      }else{
+        document.getElementById('msg').style.display='block';
+        setTimeout(()=>{
+          document.getElementById('msg').style.display='none'
+        },3000)
+      }
     }
-}
+  }
 
 const logout = async () =>{
     const user = JSON.parse(localStorage.getItem('user'));

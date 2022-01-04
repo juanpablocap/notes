@@ -7,7 +7,8 @@ if(!notes){
 notes.forEach(noteItem =>{
   const note = document.createElement('div');
   note.innerHTML = `
-  <div class="delete-button"><button onclick="deleteNote(${noteItem.id})" class="btn btn-danger">X</button></div>
+  <div class="delete-button">
+  <button onclick="deleteNote(${noteItem.id})" class="btn btn-danger">X</button></div>
   <div>${noteItem.text}</div>
   <div class="note-date">Creador:${noteItem.creator}<br>${new Date(noteItem.date)}</div>
   `;
@@ -51,7 +52,8 @@ const addNote = (event) => {
     //TODO Mostrar la nueva nota en el DOM
     const note = document.createElement('div');
     note.innerHTML =`
-    <div class="delete-button"><button onclick="deleteNote(${newNote.id})" class="btn btn-danger">X</button></div>
+    <div class="delete-button">
+    <button onclick="deleteNote(${newNote.id})" class="btn btn-danger">X</button></div>
     <div>${newNote.text}</div>
     <div class="note-date">Creador:${newNote.creator}<br>${newNote.date}</div>
     `;
